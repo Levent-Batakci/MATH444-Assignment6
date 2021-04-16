@@ -43,3 +43,12 @@ end
 for c = 1:k
     scatter(Z(1,Ic(c)),Z(2,Ic(c)), 300, "yellow", 's', "filled");
 end
+
+clf(figure(8))
+M = Query(TD(:, Ic(1)),TD(:,I==1));
+figure(8);
+histogram(M, 20)
+hold on
+M = Query(TD(:, Ic(1)),TD(:,I~=1));
+histogram(M, 20)
+
