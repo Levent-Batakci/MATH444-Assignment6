@@ -20,16 +20,14 @@ function [I, iC] = kMedoids_distMatrix(k, distMatrix, tau, maxDepth)
     %Number of data pts
     p = size(distMatrix,2);
 
-    %Randomize the intitial partition
-    I = initIndexing(p, k);
-    
     %Randomize the intitial rep. vectors and get the Coherence
     i = 1:p;
     iC = datasample(i, k, 2, 'Replace', false);
-    lastQ = totalCoherence_distMatrix(I, iC, distMatrix);
-
+    
     %Initialize partition
     I = repartition_distMatrix(iC, distMatrix);
+    
+    lastQ = totalCoherence_distMatrix(I, iC, distMatrix);
     
     %Choose new Medoids
     [iC, Q] = getMedoids_distMatrix(I, iC, distMatrix);
